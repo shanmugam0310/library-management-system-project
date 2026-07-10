@@ -136,6 +136,26 @@ VALUES
 (4, 'Kavitha Nair', 'Assistant', '9876540004', 'kavitha@library.com', 'Hyderabad', '2022-08-15', 25000.00),
 (5, 'Suresh Babu', 'Assistant', '9876540005', 'suresh@library.com', 'Chennai', '2023-01-10', 25000.00);
 
+-- constraints
+-- not null
+alter table staff
+modify staff_name varchar(30) not null,
+modify staff_role varchar(20) not null,
+modify staff_phone_num varchar(10) not null,
+modify staff_email varchar(30) not null,
+modify staff_address varchar(100) not null,
+modify staff_join_date date not null,
+modify staff_salary decimal(9,2) not null;
+
+-- unique
+alter table staff
+add constraint unique (staff_phone_num),
+add constraint unique (staff_email);
+
+-- check
+alter table staff
+add constraint check_salary check (staff_salary > 0),
+add constraint role_check check (staff_role in ("Head Librarian","Librarian","Assistant"));
 -- =====================================================================================================================
 
 
