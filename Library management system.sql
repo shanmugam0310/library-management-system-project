@@ -33,6 +33,11 @@ VALUES
 (9, 'A Brief History of Time', 'Stephen Hawking', 'Science', 'Bantam Books', 1, 20.00, 3, 3),
 (10, 'Clean Code', 'Robert C. Martin', 'Technology', 'Prentice Hall', 1, 35.00, 2, 2);
  
+ -- primary key and auto increment 
+alter table books
+add constraint primary key(book_id),
+modify book_id int auto_increment;
+
  -- constraints 
  -- not null
  alter table books
@@ -88,6 +93,11 @@ VALUES
 (9, 'Aditya Patel', 'aditya@gmail.com', '9876543218', 'Ahmedabad', '2025-08-01', '2026-08-01', 'active'),
 (10, 'Divya Lakshmi', 'divya@gmail.com', '9876543219', 'Chennai', '2025-09-01', '2026-09-01', 'active');
 
+-- primary key and auto increment 
+alter table members
+add constraint primary key(mem_id),
+modify mem_id int auto_increment;
+
 -- constraints
 -- not null
 alter table members
@@ -135,6 +145,11 @@ VALUES
 (3, 'Manoj Pillai', 'Librarian', '9876540003', 'manoj@library.com', 'Coimbatore', '2021-06-01', 35000.00),
 (4, 'Kavitha Nair', 'Assistant', '9876540004', 'kavitha@library.com', 'Hyderabad', '2022-08-15', 25000.00),
 (5, 'Suresh Babu', 'Assistant', '9876540005', 'suresh@library.com', 'Chennai', '2023-01-10', 25000.00);
+
+-- primary key and auto increment 
+alter table staff
+add constraint primary key(staff_id),
+modify staff_id int auto_increment;
 
 -- constraints
 -- not null
