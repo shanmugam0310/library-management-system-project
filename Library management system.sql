@@ -20,9 +20,6 @@ book_rent decimal(9,2)
 
 select * from books;
 
-
-
-
 INSERT INTO BOOKS (book_id, book_name, book_author, book_genre, book_publisher, book_edition, book_rent, book_total_copies, book_available_copies)
 VALUES
 (1, 'The Alchemist', 'Paulo Coelho', 'Fiction', 'HarperCollins', 1, 20.00, 5, 5),
@@ -57,9 +54,6 @@ VALUES
  add constraint no_0_total_copies check (book_total_copies > 0),
  add constraint no_negative_available_copies check (book_available_copies >= 0);
  
-
- 
- 
 -- =====================================================================================================================
 -- members table and sectioon
 -- =====================================================================================================================
@@ -75,6 +69,7 @@ mem_membership_end date
 );
 
 ALTER TABLE MEMBERS ADD membership_status VARCHAR(10);
+
 alter table members
 rename column memb_name to mem_name;
 
@@ -93,6 +88,28 @@ VALUES
 (9, 'Aditya Patel', 'aditya@gmail.com', '9876543218', 'Ahmedabad', '2025-08-01', '2026-08-01', 'active'),
 (10, 'Divya Lakshmi', 'divya@gmail.com', '9876543219', 'Chennai', '2025-09-01', '2026-09-01', 'active');
 
+-- constraints
+-- not null
+alter table members
+modify mem_name varchar(30) not null,
+modify mem_phone_num varchar(10) not null,
+modify mem_email varchar(30) not null,
+modify mem_membership_start date  not null,
+modify mem_membership_end date not null,
+modify mem_address varchar(30) not null;
+
+-- unique
+alter table members
+add constraint unique_name_required unique (mem_phone_num),
+add constraint unique_email_required unique (mem_email);
+
+-- default
+alter table members 
+alter membership_status set default "active ";
+
+-- check
+alter table members
+add constraint only_3_status check (membership_status in ("active","inactive","expired"));
 
 -- =====================================================================================================================
 -- staff table and section
