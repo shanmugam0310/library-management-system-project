@@ -15,14 +15,13 @@ book_publisher varchar(30),
 book_edition int,
 book_total_copies int ,
 book_available_copies int,
-book_price decimal(9,2)
+book_rent decimal(9,2)
 );
 
 select * from books;
 
 
-alter table books
-rename column book_price to book_rent ;
+
 
 INSERT INTO BOOKS (book_id, book_name, book_author, book_genre, book_publisher, book_edition, book_rent, book_total_copies, book_available_copies)
 VALUES
@@ -36,7 +35,31 @@ VALUES
 (8, 'The Da Vinci Code', 'Dan Brown', 'Thriller', 'Doubleday', 2, 25.00, 5, 4),
 (9, 'A Brief History of Time', 'Stephen Hawking', 'Science', 'Bantam Books', 1, 20.00, 3, 3),
 (10, 'Clean Code', 'Robert C. Martin', 'Technology', 'Prentice Hall', 1, 35.00, 2, 2);
+ 
+ -- constraints 
+ -- not null
+ alter table books
+ modify book_name  varchar(50) not null,
+ modify book_genre varchar(30) not null,
+ modify book_author varchar(30) not null,
+ modify book_publisher varchar(30) not null,
+ modify book_available_copies int  not null,
+ modify book_total_copies int  not null,
+ modify book_rent decimal(9,2)  not null;
+ 
+ -- default 
+ alter table books
+ alter book_edition set default 1;
+ 
+ -- check 
+ alter table books
+ add constraint no_0_rent check (book_rent > 0),
+ add constraint no_0_total_copies check (book_total_copies > 0),
+ add constraint no_negative_available_copies check (book_available_copies >= 0);
+ 
 
+ 
+ 
 -- =====================================================================================================================
 -- members table and sectioon
 -- =====================================================================================================================
@@ -70,6 +93,7 @@ VALUES
 (9, 'Aditya Patel', 'aditya@gmail.com', '9876543218', 'Ahmedabad', '2025-08-01', '2026-08-01', 'active'),
 (10, 'Divya Lakshmi', 'divya@gmail.com', '9876543219', 'Chennai', '2025-09-01', '2026-09-01', 'active');
 
+
 -- =====================================================================================================================
 -- staff table and section
 -- =====================================================================================================================
@@ -94,6 +118,10 @@ VALUES
 (3, 'Manoj Pillai', 'Librarian', '9876540003', 'manoj@library.com', 'Coimbatore', '2021-06-01', 35000.00),
 (4, 'Kavitha Nair', 'Assistant', '9876540004', 'kavitha@library.com', 'Hyderabad', '2022-08-15', 25000.00),
 (5, 'Suresh Babu', 'Assistant', '9876540005', 'suresh@library.com', 'Chennai', '2023-01-10', 25000.00);
+
+-- =====================================================================================================================
+
+
 
 
 
