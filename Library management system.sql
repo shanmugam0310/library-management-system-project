@@ -155,7 +155,7 @@ add constraint unique (staff_email);
 -- check
 alter table staff
 add constraint check_salary check (staff_salary > 0),
-add constraint role_check check (staff_role in ("Head Librarian","Librarian","Assistant"));
+add constraint role_check check (staff_role in ("Head Librarian","Librarian","Assistant")); 
 -- =====================================================================================================================
 
 
