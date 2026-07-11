@@ -203,5 +203,15 @@ VALUES
 (20.00, 7, 1, 5, '2026-05-10', '2026-05-24', NULL, 'upi', 'issued'),
 (25.00, 4, 3, 6, '2026-06-01', '2026-06-15', '2026-06-20', 'card', 'returned');
 
+-- =====================================================================================================================
+-- joins 
+-- =====================================================================================================================
 
+
+select t.t_id , t.t_amt , t.customer_id , t.sale_staff_id , t.sale_book_id , b.book_name , b.book_rent ,
+ s.staff_name , t.book_issue_date , t.book_due_date , t.book_return_date , t.book_status 
+from transactions t  
+inner join books b  on t.sale_book_id  = b.book_id
+inner join members  m  on t.customer_id = m.mem_id 
+inner join staff s on t.sale_staff_id = s.staff_id ;  
 
