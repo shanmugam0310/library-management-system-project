@@ -172,8 +172,36 @@ alter table staff
 add constraint check_salary check (staff_salary > 0),
 add constraint role_check check (staff_role in ("Head Librarian","Librarian","Assistant")); 
 -- =====================================================================================================================
+-- transaction table 
+-- =====================================================================================================================
 
+create table transactions(
+t_id int primary key auto_increment,
+t_amt decimal (9,2) not null,
+customer_id int not null,
+foreign key (customer_id) references members (mem_id),
+sale_staff_id int not null,
+foreign key(sale_staff_id) references staff (staff_id),
+sale_book_id int not null,
+foreign key(sale_book_id) references books (book_id),
+book_issue_date date not null,
+book_due_date date not null,
+book_return_date date  null,
+payment_method varchar (20) not null,
+book_status varchar(20) not null default "issued",
+check (book_status in ("issued","returned","overdue"))
+);
 
+select * from transactions;
+
+INSERT INTO transactions (t_amt, customer_id, sale_staff_id, sale_book_id, book_issue_date, book_due_date, book_return_date, payment_method, book_status)
+VALUES
+(20.00, 1, 2, 1, '2026-01-05', '2026-01-19', '2026-01-18', 'cash', 'returned'),
+(25.00, 3, 1, 2, '2026-02-10', '2026-02-24', '2026-02-28', 'upi', 'returned'),
+(30.00, 5, 3, 3, '2026-03-15', '2026-03-29', NULL, 'card', 'overdue'),
+(15.00, 2, 2, 4, '2026-04-01', '2026-04-15', '2026-04-14', 'cash', 'returned'),
+(20.00, 7, 1, 5, '2026-05-10', '2026-05-24', NULL, 'upi', 'issued'),
+(25.00, 4, 3, 6, '2026-06-01', '2026-06-15', '2026-06-20', 'card', 'returned');
 
 
 
