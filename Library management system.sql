@@ -229,3 +229,21 @@ from transactions t
 inner join members m on t.customer_id = m.mem_id
 inner join books b on t.sale_book_id = b.book_id
 where book_status = "issued";
+
+-- =====================================================================================================================
+-- functions and logical operators
+-- =====================================================================================================================
+
+select upper(book_name) , book_rent from books;
+
+select datediff( t.book_return_date ,t.book_issue_date) , b.book_name  from transactions t
+inner join books b on t.sale_book_id = b.book_id ;
+
+
+select * from members 
+where membership_status = "active" and mem_address = "chennai";
+
+select * from transactions 
+where payment_method = "cash" or  payment_method  = "upi";
+
+ 
