@@ -215,3 +215,17 @@ inner join books b  on t.sale_book_id  = b.book_id
 inner join members  m  on t.customer_id = m.mem_id 
 inner join staff s on t.sale_staff_id = s.staff_id ;  
 
+select * from members m  left join transactions t
+on  m.mem_id = t.customer_id; 
+
+select m.mem_name , b.book_name 
+from transactions t 
+inner join members m on t.customer_id = m.mem_id
+inner join books b on t.sale_book_id = b.book_id
+where book_status = "overdue";
+
+select m.mem_name , b.book_name 
+from transactions t 
+inner join members m on t.customer_id = m.mem_id
+inner join books b on t.sale_book_id = b.book_id
+where book_status = "issued";
